@@ -18,6 +18,14 @@ If you find you're having trouble finding relevant questions, please create an i
   - [[#how-do-i-replace-a-key-mapping-if-i-dont-know-the-key][How do I replace a key mapping if I don't know the key?]]
   - [[#how-do-i-set-a-key-mapping-for-a-specific-evil-mode][How do I set a key mapping for a specific evil mode?]]
   - [[#how-do-i-set-a-key-mapping-for-a-mode-based-key-map][How do I set a key mapping for a mode-based key map?]]
+- [[#ui][UI]]
+  - [[#how-do-i-disable-pretty-code-symbols][How do I disable pretty code symbols?]]
+  - [[#how-do-i-make-emacs-fullscreen-on-startup][How do I make emacs fullscreen on startup?]]
+- [[#modes][Modes]]
+  - [[#js2-mode][js2-mode]]
+    - [[#how-do-i-get-abbreviations-tide-or-other-completions-to-company][How do I get abbreviations, tide, or other completions to company?]]
+  - [[#org-mode][org-mode]]
+    - [[#how-do-i-bind-a-key-for-only-org-and-related-modes][How do I bind a key for only org and related modes?]]
 
 * General
 ** How do I learn about the DOOM api?
@@ -84,4 +92,37 @@ Edit your =~/.doom.d/config.el=. There are many options, but there are two very 
       "[" nil
       "]" nil)
 #+END_SRC
-
+* UI
+** How do I disable pretty code symbols?
+- Open =~/.doom.d/config.el= and add code similar to the following
+#+BEGIN_SRC emacs-lisp
+(setq +pretty-code-symbols nil)
+;; or ;;
+(setq +pretty-code-enabled-modes nil)
+#+END_SRC
+(thanks to @henrik on doom discord)
+** How do I make emacs fullscreen on startup?
+- Place one of the following snippets in your =~/.doom.d/config.el= or if using Emacs 27+ your =early-init.el=
+#+BEGIN_SRC emacs-lisp
+(add-hook 'window-setup-hook #'toggle-frame-fullscreen)
+;; or ;;
+(add-to-list 'initial-frame-alist '(fullscreen . fullboth))
+#+END_SRC
+* Modes
+** js2-mode
+*** How do I get abbreviations, tide, or other completions to company?
+- Open up your =~/.doom.d/config.el= and add a snippet like the following
+#+BEGIN_SRC emacs-lisp
+(after! tide
+ (set-company-backend! 'tide-mode '(company-tide company-dabbrev)))
+#+END_SRC
+(credit goes to @kleisi from doom discord)
+** org-mode
+*** How do I bind a key for only org and related modes?
+- Open up your =~/.doom.d/config.el= and add a snippet like the following
+#+BEGIN_SRC emacs-lisp
+(map! :after evil-org
+      :map evil-org-mode-map
+      :i "C-k" 'evil-insert-digraph)
+#+END_SRC
+(credit goes to @henrik from doom discord)
