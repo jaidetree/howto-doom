@@ -42,6 +42,18 @@ Edit your =~/.doom.d/config.el=. There are many options, but there are two very 
 #+END_SRC
 - Make sure you use the package name and not the mode name
 - Be sure to read through the excellent [[github:hlissner/doom-emacs/blob/develop/docs/api.org][Doom Emacs API docs]] for more options including =after!= and =add-hook!=.
+- Alternatively using =after!=:
+#+BEGIN_SRC emacs-lisp
+(after! highlight-indent-guides
+  (setq
+    highlight-indent-guides-auto-enabled         nil
+    highlight-indent-guides-responsive           'top
+    highlight-indent-guides-delay                0
+    highlight-indent-guides-highlighter-function 'j/active-guide)
+  (custom-set-faces!
+    '(highlight-indent-guides-top-character-face
+       :foreground "#DE5356")))
+#+END_SRC
 ** What's the difference between =use-package!= and =after!=?
 - =use-package!= can use =:init= to run code before the package is loaded and =:config= to run code after the package is loaded.
 - =use-package!= has many more keywords to manage packages such as =:hook=, =:after=, =:bind=, =:defer=, and =:commands=.
@@ -65,6 +77,7 @@ Edit your =~/.doom.d/config.el=. There are many options, but there are two very 
       :nv "P" #'hydra-paste/evil-paste-before)
 #+END_SRC
 ** How do I set a key mapping for a mode-based key map?
+- Specify =:map= and provide a reference to a keymap such as evil-org-mode-map
 - Specify =:map=
 #+BEGIN_SRC emacs-lisp
 (map! :after lispy
