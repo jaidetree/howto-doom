@@ -21,6 +21,8 @@ If you find you're having trouble finding relevant questions, please create an i
 - [[#ui][UI]]
   - [[#how-do-i-disable-pretty-code-symbols][How do I disable pretty code symbols?]]
   - [[#how-do-i-make-emacs-fullscreen-on-startup][How do I make emacs fullscreen on startup?]]
+- [[#language-server-protocol-lsp][Language Server Protocol (LSP)]]
+  - [[#how-do-i-add-language-server-protocol-support][How do I add language server protocol support?]]
 - [[#workspaces][Workspaces]]
   - [[#how-do-you-close-all-open-buffers-in-a-workspace][How do you close all open buffers in a workspace?]]
   - [[#how-do-you-kill-buried-buffers][How do you kill buried buffers?]]
@@ -112,6 +114,13 @@ Edit your =~/.doom.d/config.el=. There are many options, but there are two very 
 (add-to-list 'initial-frame-alist '(fullscreen . fullboth))
 #+END_SRC
 (credit goes to @henrik from doom discord)
+* Language Server Protocol (LSP)
+** How do I add language server protocol support?
+- Open =~/.doom.d/init.el= and uncomment the lsp module
+- For each language you would like to use lsp with, add +lsp flag to their respective module in =~/.doom.d/init.el=
+- =python= -> =(python +lsp)=
+- Install the language server for your target language. See [[https://emacs-lsp.github.io/lsp-mode/page/languages/][emacs-lsp]] docs for detailed instructions.
+- See the official [[https://github.com/hlissner/doom-emacs/tree/develop/modules/tools/lsp][Doom LSP module docs]] for configuration options
 * Workspaces
 ** How do you close all open buffers in a workspace?
 =SPC q F= (doom/kill-all-buffers)
