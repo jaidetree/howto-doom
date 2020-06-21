@@ -78,7 +78,6 @@ Edit your =~/.doom.d/config.el=. There are many options, but there are two very 
 #+END_SRC
 ** How do I set a key mapping for a mode-based key map?
 - Specify =:map= and provide a reference to a keymap such as evil-org-mode-map
-- Specify =:map=
 #+BEGIN_SRC emacs-lisp
 (map! :after lispy
       :map lispy-mode-map-lispy
