@@ -1,5 +1,4 @@
 #+TITLE: How to Doom
-#+OPTIONS:
 
 [[file:images/hero.png]]
 
@@ -18,6 +17,7 @@ If you find you're having trouble finding relevant questions, please create an i
   - [[#how-do-i-replace-a-key-mapping-if-i-dont-know-the-key][How do I replace a key mapping if I don't know the key?]]
   - [[#how-do-i-set-a-key-mapping-for-a-specific-evil-mode][How do I set a key mapping for a specific evil mode?]]
   - [[#how-do-i-set-a-key-mapping-for-a-mode-based-key-map][How do I set a key mapping for a mode-based key map?]]
+  - [[#how-do-i-remove-a-key-mapping-from-a-mode-based-key-map][How do I remove a key mapping from a mode-based key map?]]
 - [[#ui][UI]]
   - [[#how-do-i-disable-pretty-code-symbols][How do I disable pretty code symbols?]]
   - [[#how-do-i-make-emacs-fullscreen-on-startup][How do I make emacs fullscreen on startup?]]
@@ -91,6 +91,20 @@ Edit your =~/.doom.d/config.el=. There are many options, but there are two very 
 #+END_SRC
 ** How do I set a key mapping for a mode-based key map?
 - Specify =:map= and provide a reference to a keymap such as evil-org-mode-map
+#+BEGIN_SRC emacs-lisp
+(map! :after vterm
+      :map vterm-mode-map
+      "C-c <escape>" #'vterm-exit
+      "C-c q"        #'vterm-quit
+      "C-c x"        #'vterm-send-C-x
+      "C-c C-d"      #'vterm-send-C-d
+      "C-c :"        #'vterm-send-colon
+      "C-h"          #'vterm-send-C-h
+      "C-u"          #'vterm-send-C-u
+      "C-^"          (cmd!! #'vterm-send-key "^" t nil t))
+#+END_SRC
+** How do I remove a key mapping from a mode-based key map?
+- Use nil in place of a command symbol reference to unbind from a mode-map
 #+BEGIN_SRC emacs-lisp
 (map! :after lispy
       :map lispy-mode-map-lispy
