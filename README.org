@@ -21,6 +21,9 @@ If you find you're having trouble finding relevant questions, please create an i
 - [[#ui][UI]]
   - [[#how-do-i-disable-pretty-code-symbols][How do I disable pretty code symbols?]]
   - [[#how-do-i-make-emacs-fullscreen-on-startup][How do I make emacs fullscreen on startup?]]
+- [[#workspaces][Workspaces]]
+  - [[#how-do-you-close-all-open-buffers-in-a-workspace][How do you close all open buffers in a workspace?]]
+  - [[#how-do-you-kill-buried-buffers][How do you kill buried buffers?]]
 - [[#modes][Modes]]
   - [[#js2-mode][js2-mode]]
     - [[#how-do-i-get-abbreviations-tide-or-other-completions-to-company][How do I get abbreviations, tide, or other completions to company?]]
@@ -109,6 +112,11 @@ Edit your =~/.doom.d/config.el=. There are many options, but there are two very 
 (add-to-list 'initial-frame-alist '(fullscreen . fullboth))
 #+END_SRC
 (credit goes to @henrik from doom discord)
+* Workspaces
+** How do you close all open buffers in a workspace?
+=SPC q F= (doom/kill-all-buffers)
+** How do you kill buried buffers?
+=SPC b Z=
 * Modes
 ** js2-mode
 *** How do I get abbreviations, tide, or other completions to company?
