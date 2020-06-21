@@ -1,10 +1,23 @@
 #+TITLE: How to Doom
+#+OPTIONS:
 
 [[file:images/hero.png]]
 
 A guide to learning [[github:hlissner/doom-emacs][Doom Emacs]] documenting common questions and answers. This guide is based on repeating questions found in the Doom Emacs Discord server. For this to become more helpful please consider creating a pull-request. The current plan is to start out as lean, single document then organize it as it grows overtime.
 
 If you find you're having trouble finding relevant questions, please create an issue to kickstart a reorganization effort.
+
+* Table of Contents :TOC_3:
+- [[#general][General]]
+  - [[#how-do-i-learn-about-the-doom-api][How do I learn about the DOOM api?]]
+  - [[#how-do-i-install-a-package-from-melpa][How do I install a package from MELPA?]]
+  - [[#how-do-i-customize-a-package-or-module][How do I customize a package or module?]]
+  - [[#whats-the-difference-between-use-package-and-after][What's the difference between =use-package!= and =after!=?]]
+- [[#key-bindings][Key Bindings]]
+  - [[#how-do-i-find-a-key-mapping][How do I find a key mapping?]]
+  - [[#how-do-i-replace-a-key-mapping-if-i-dont-know-the-key][How do I replace a key mapping if I don't know the key?]]
+  - [[#how-do-i-set-a-key-mapping-for-a-specific-evil-mode][How do I set a key mapping for a specific evil mode?]]
+  - [[#how-do-i-set-a-key-mapping-for-a-mode-based-key-map][How do I set a key mapping for a mode-based key map?]]
 
 * General
 ** How do I learn about the DOOM api?
