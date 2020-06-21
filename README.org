@@ -1,0 +1,59 @@
+#+TITLE: Howto Doom
+
+A guide to learning [[github:hlissner/doom-emacs][Doom Emacs]] documenting common questions and answers. This guide is based on repeating questions found in the Doom Emacs Discord server. For this to become more helpful please consider creating a pull-request. The current plan is to start out as lean, single document then organize it as it grows overtime.
+
+If you find you're having trouble finding relevant questions, please create an issue to kickstart a reorganization effort.
+
+* General
+** How do I learn about the DOOM api?
+- Read the source. Elisp is a concise, expressive language and will be tell you exactly how a command or function exists.
+- Use the help tools in emacs to view functions, vars, keybindings, modes, and much more.
+- For instance in normal mode press =SPC h f=, type =use-package\!=, then press =ENTER=. The help guide will show docs, mappings, references, and source.
+** How do I install a package from MELPA?
+Edit your =~/.doom.d/packages.el= and add a line like the following:
+#+BEGIN_SRC emacs-lisp
+(package! evil-lisp-state)
+#+END_SRC
+Where you can replace evil-lisp-state with the MELPA package name.
+** How do I customize a package or module?
+Edit your =~/.doom.d/config.el=. There are many options, but there are two very common formats:
+#+BEGIN_SRC emacs-lisp
+(use-package! evil-lisp-state
+  :init
+  (setq evil-lisp-state-global t)
+  :config
+  (map! :map evil-lisp-state-map
+        ";" (evil-lisp-state-enter-command wrap-comment)))
+#+END_SRC
+- Make sure you use the package name and not the mode name
+- Be sure to read through the excellent [[github:hlissner/doom-emacs/blob/develop/docs/api.org][Doom Emacs API docs]] for more options including =after!= and =add-hook!=.
+** What's the difference between =use-package!= and =after!=?
+- =use-package!= can use =:init= to run code before the package is loaded and =:config= to run code after the package is loaded.
+- =use-package!= has many more keywords to manage packages such as =:hook=, =:after=, =:bind=, =:defer=, and =:commands=.
+- Press =SPC h f= type =use-package= to learn more.
+
+* Key Bindings
+** How do I find a key mapping?
+- In normal mode press =SPC h k= then press the keystroke to trigger view the command bound to the keymap.
+- If in any other mode press =M-x= then type =describe-key=
+** How do I replace a key mapping if I don't know the key?
+- Use a vector prefixed with =remap=
+#+BEGIN_SRC emacs-lisp
+(map! [remap +workspace/new] #'my-workspace-new)
+#+END_SRC
+** How do I set a key mapping for a specific evil mode?
+- Normal, insert, visual, operator, and other evil mode bindings can be set by including a prefix with keys like =:nivo=
+#+BEGIN_SRC emacs-lisp
+(map! :after evil
+      :nv "p" #'hydra-paste/evil-paste-after
+      :nv "P" #'hydra-paste/evil-paste-before)
+#+END_SRC
+** How do I set a key mapping for a mode-based key map?
+- Specify =:map=
+#+BEGIN_SRC emacs-lisp
+(map! :after lispy
+      :map lispy-mode-map-lispy
+      "[" nil
+      "]" nil)
+#+END_SRC
+
