@@ -108,6 +108,7 @@ Edit your =~/.doom.d/config.el=. There are many options, but there are two very 
 ;; or ;;
 (add-to-list 'initial-frame-alist '(fullscreen . fullboth))
 #+END_SRC
+(credit goes to @henrik from doom discord)
 * Modes
 ** js2-mode
 *** How do I get abbreviations, tide, or other completions to company?
