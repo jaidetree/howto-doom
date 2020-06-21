@@ -2,7 +2,6 @@
 
 [[file:images/hero.png]]
 
-* How to Doom
 A guide to learning [[github:hlissner/doom-emacs][Doom Emacs]] documenting common questions and answers. This guide is based on repeating questions found in the Doom Emacs Discord server. For this to become more helpful please consider creating a pull-request. The current plan is to start out as lean, single document then organize it as it grows overtime.
 
 If you find you're having trouble finding relevant questions, please create an issue to kickstart a reorganization effort.
