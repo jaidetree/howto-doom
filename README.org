@@ -27,6 +27,8 @@ If you find you're having trouble finding relevant questions, please create an i
   - [[#how-do-you-close-all-open-buffers-in-a-workspace][How do you close all open buffers in a workspace?]]
   - [[#how-do-you-kill-buried-buffers][How do you kill buried buffers?]]
 - [[#modes][Modes]]
+  - [[#evil-mode][Evil Mode]]
+    - [[#how-do-i-learn-evil-mode-bindings][How do I learn evil mode bindings?]]
   - [[#js2-mode][js2-mode]]
     - [[#how-do-i-get-abbreviations-tide-or-other-completions-to-company][How do I get abbreviations, tide, or other completions to company?]]
   - [[#org-mode][org-mode]]
@@ -141,6 +143,12 @@ Edit your =~/.doom.d/config.el=. There are many options, but there are two very 
 ** How do you kill buried buffers?
 =SPC b Z=
 * Modes
+** Evil Mode
+*** How do I learn evil mode bindings?
+- Many tutorials, videos, interactive games exist
+- One method that runs from within emacs is a ported vimtutor package
+- https://github.com/syl20bnr/evil-tutor
+  (credit goes to @FDietyLink from doom discord)
 ** js2-mode
 *** How do I get abbreviations, tide, or other completions to company?
 - Open up your =~/.doom.d/config.el= and add a snippet like the following
