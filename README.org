@@ -23,6 +23,7 @@ If you find you're having trouble finding relevant questions, please create an i
 - [[#ui][UI]]
   - [[#how-do-i-disable-pretty-code-symbols][How do I disable pretty code symbols?]]
   - [[#how-do-i-make-emacs-fullscreen-on-startup][How do I make emacs fullscreen on startup?]]
+  - [[#how-do-i-create-a-binding-to-toggle-a-shared-vterm-window-across-buffers][How do I create a binding to toggle a shared vterm window across buffers?]]
 - [[#language-server-protocol-lsp][Language Server Protocol (LSP)]]
   - [[#how-do-i-add-language-server-protocol-support][How do I add language server protocol support?]]
 - [[#workspaces][Workspaces]]
@@ -142,7 +143,38 @@ Edit your =~/.doom.d/config.el=. There are many options, but there are two very 
 ;; or ;;
 (add-to-list 'initial-frame-alist '(fullscreen . fullboth))
 #+END_SRC
-(credit goes to @henrik from doom discord)
+(thanks to @henrik from doom discord)
+** How do I create a binding to toggle a shared vterm window across buffers?
+- Open =~/.doom.d/config.el=
+- Add the following snippet:
+#+BEGIN_SRC emacs-lisp
+(defun +vterm-open-session (name)
+  (unless (fboundp 'module-load)
+    (user-error "Your build of Emacs lacks dynamic modules support and cannot load vterm"))
+  (let ((buffer-name (format "*doom:vterm-popup:%s*" name))
+        confirm-kill-processes
+        current-prefix-arg)
+    (if-let (win (get-buffer-window buffer-name))
+        (if (eq (selected-window) win)
+            (delete-window win)
+          (select-window win)
+          (when (bound-and-true-p evil-local-mode)
+            (evil-change-to-initial-state))
+          (goto-char (point-max)))
+      (setenv "PROOT" (or (doom-project-root) default-directory))
+      (let ((buffer (get-buffer-create buffer-name)))
+        (with-current-buffer buffer
+          (unless (eq major-mode 'vterm-mode)
+            (vterm-mode))
+          (+vterm--change-directory-if-remote))
+        (pop-to-buffer buffer)))))
+
+(map! :leader "o M-t" (cmd! (+vterm-open-session "my-general-purpose-terminal")))
+#+END_SRC
+- Evaluate the defun and the map! or reload doom `SPC h r r`
+- Press `SPC o M-t` to toggle the shared terminal
+(thanks to @henrik from doom discord)
+
 * Language Server Protocol (LSP)
 ** How do I add language server protocol support?
 - Open =~/.doom.d/init.el= and uncomment the lsp module
