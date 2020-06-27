@@ -33,6 +33,8 @@ If you find you're having trouble finding relevant questions, please create an i
     - [[#how-do-i-get-abbreviations-tide-or-other-completions-to-company][How do I get abbreviations, tide, or other completions to company?]]
   - [[#org-mode][org-mode]]
     - [[#how-do-i-bind-a-key-for-only-org-and-related-modes][How do I bind a key for only org and related modes?]]
+- [[#emacs-lisp][Emacs Lisp]]
+  - [[#how-do-i-pretty-print-elisp-data][How do I pretty-print elisp data?]]
 
 * General
 ** How do I learn about the DOOM api?
@@ -166,3 +168,9 @@ Edit your =~/.doom.d/config.el=. There are many options, but there are two very 
       :i "C-k" 'evil-insert-digraph)
 #+END_SRC
 (credit goes to @henrik from doom discord)
+
+* Emacs Lisp
+** How do I pretty-print elisp data?
+#+BEGIN_SRC emacs-lisp
+(pp doom-evil-state-alist)
+#+END_SRC
