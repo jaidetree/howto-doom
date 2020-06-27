@@ -12,6 +12,8 @@ If you find you're having trouble finding relevant questions, please create an i
   - [[#how-do-i-install-a-package-from-melpa][How do I install a package from MELPA?]]
   - [[#how-do-i-customize-a-package-or-module][How do I customize a package or module?]]
   - [[#whats-the-difference-between-use-package-and-after][What's the difference between =use-package!= and =after!=?]]
+- [[#editing][Editing]]
+  - [[#how-do-i-disable-auto-pairing-parenthesis][How do I disable auto-pairing-parenthesis?]]
 - [[#key-bindings][Key Bindings]]
   - [[#how-do-i-find-a-key-mapping][How do I find a key mapping?]]
   - [[#how-do-i-replace-a-key-mapping-if-i-dont-know-the-key][How do I replace a key mapping if I don't know the key?]]
@@ -76,6 +78,15 @@ Edit your =~/.doom.d/config.el=. There are many options, but there are two very 
 - =use-package!= has many more keywords to manage packages such as =:hook=, =:after=, =:bind=, =:defer=, and =:commands=.
 - Press =SPC h f= type =use-package= to learn more.
 - =after!= is exclusively for running code when one or more packages were loaded.
+
+* Editing
+** How do I disable auto-pairing-parenthesis?
+- Open your =~/.doom.d/config.el=
+- Add the following snippet
+#+BEGIN_SRC emacs-lisp
+(remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
+#+END_SRC
+(credit goes to @henrik from doom discord)
 
 * Key Bindings
 ** How do I find a key mapping?
